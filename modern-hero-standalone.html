@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Excellence | Modern UI Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/umd/lucide.js">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: #0f0f23;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(147, 51, 234, 0.5);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(147, 51, 234, 0.8);
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: rgba(147, 51, 234, 0.3);
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { 
+                opacity: 0; 
+                transform: scale(0) rotate(0deg); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1) rotate(180deg); 
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .floating-icon {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) { animation-delay: 0s; }
+        .floating-icon:nth-child(2) { animation-delay: 0.2s; }
+        .floating-icon:nth-child(3) { animation-delay: 0.4s; }
+        .floating-icon:nth-child(4) { animation-delay: 0.6s; }
+
+        .glow-effect {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .slide-in {
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .delay-2 { animation-delay: 0.4s; opacity: 0; }
+        .delay-3 { animation-delay: 0.8s; opacity: 0; }
+        .delay-4 { animation-delay: 1.0s; opacity: 0; }
+        .delay-5 { animation-delay: 1.2s; opacity: 0; }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #7c3aed, #ec4899);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+        <!-- Animated Background -->
+        <div class="absolute inset-0">
+            <div id="mouseGradient" class="absolute inset-0 opacity-30 transition-all duration-200 ease-linear"></div>
+            
+            <!-- Grid Pattern -->
+            <div class="absolute inset-0 opacity-20 grid-pattern"></div>
+        </div>
+
+        <!-- Floating Elements -->
+        <div class="floating-icon absolute z-10" style="left: 20%; top: 20%;">
+            <i data-lucide="sparkles" class="w-6 h-6 text-purple-400"></i>
+        </div>
+        <div class="floating-icon absolute z-10" style="left: 80%; top: 30%;">
+            <i data-lucide="zap" class="w-6 h-6 text-purple-400"></i>
+        </div>
+        <div class="floating-icon absolute z-10" style="left: 15%; top: 70%;">
+            <i data-lucide="globe" class="w-6 h-6 text-purple-400"></i>
+        </div>
+        <div class="floating-icon absolute z-10" style="left: 85%; top: 80%;">
+            <i data-lucide="play" class="w-6 h-6 text-purple-400"></i>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-20 flex items-center justify-center min-h-screen px-4">
+            <div class="max-w-6xl mx-auto text-center">
+                <!-- Badge -->
+                <div class="slide-in delay-1 inline-flex items-center px-4 py-2 mb-8 text-sm font-medium text-purple-200 glass rounded-full">
+                    <i data-lucide="sparkles" class="w-4 h-4 mr-2"></i>
+                    Awwwards Worthy Experience
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="slide-in delay-2 text-5xl md:text-7xl lg:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent leading-tight">
+                    Design<br>
+                    <span class="relative">
+                        Excellence
+                        <div class="glow-effect absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25"></div>
+                    </span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="slide-in delay-3 text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    Crafting digital experiences that push the boundaries of creativity,<br class="hidden md:block">
+                    technology, and human interaction.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="slide-in delay-4 flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <button class="btn-primary group relative px-8 py-4 rounded-full text-white font-semibold text-lg overflow-hidden">
+                        <span class="relative z-10 flex items-center">
+                            Explore Magic
+                            <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                        </span>
+                    </button>
+
+                    <button class="btn-secondary group flex items-center px-8 py-4 text-white font-semibold text-lg rounded-full">
+                        <i data-lucide="play" class="w-5 h-5 mr-2"></i>
+                        Watch Demo
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="slide-in delay-5 grid grid-cols-3 gap-8 mt-20 pt-8 border-t border-white/10">
+                    <div class="stat-card text-center transition-transform duration-300 cursor-pointer">
+                        <div class="text-3xl md:text-4xl font-bold text-white mb-2">99%</div>
+                        <div class="text-gray-400 font-medium">Satisfaction</div>
+                    </div>
+                    <div class="stat-card text-center transition-transform duration-300 cursor-pointer">
+                        <div class="text-3xl md:text-4xl font-bold text-white mb-2">500+</div>
+                        <div class="text-gray-400 font-medium">Projects</div>
+                    </div>
+                    <div class="stat-card text-center transition-transform duration-300 cursor-pointer">
+                        <div class="text-3xl md:text-4xl font-bold text-white mb-2">50+</div>
+                        <div class="text-gray-400 font-medium">Awards</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Gradient -->
+        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/50 to-transparent"></div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mouse tracking for interactive background
+        document.addEventListener('mousemove', (e) => {
+            const mouseGradient = document.getElementById('mouseGradient');
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            
+            mouseGradient.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(120, 119, 198, 0.3) 0%, transparent 50%)`;
+        });
+
+        // Add click effects to buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.2);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Parallax effect for floating elements
+        document.addEventListener('mousemove', (e) => {
+            const floatingElements = document.querySelectorAll('.floating-icon');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            floatingElements.forEach((element, index) => {
+                const speed = (index + 1) * 0.5;
+                const xOffset = (x - 0.5) * speed * 20;
+                const yOffset = (y - 0.5) * speed * 20;
+                
+                element.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+        });
+
+        // Smooth scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.slide-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
